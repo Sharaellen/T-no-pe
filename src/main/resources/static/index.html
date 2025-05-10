@@ -1,105 +1,369 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Usuários - Demo</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        max-width: 600px;
-        margin: 40px auto;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tá No Pé - Loja de Chinelos Personalizados</title>
+  <style>
+    /* Estilos como antes */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+    h1 {
+      color: #3a3a3a;
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 5px;
+      padding-left: 10px;
+    }
+    input, button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 90%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .resposta {
+      text-align: center;
+      font-weight: bold;
+      color: green;
+      margin-top: 10px;
+    }
+    .top-nav {
+      background-color: #ffffff;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .top-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .top-nav a:hover {
+      color: #1e90ff;
+    }
+    .top-banner {
+      background-image: url("./imagens/banner\ novo.jpeg") ;
+      height: 770px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .banner-content {
+        
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-      h2 {
-        margin-top: 30px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 5px;
-      }
+    .product-image {
+      width: 100px;
+      height: auto;
+    }
+    .banner-text {
+      margin-left: 20px;
+      text-align: center;
+    }
+    .banner-text h1 {
+      font-size: 28px;
+    }
+    .btn-compre {
+      padding: 10px 20px;
+      background-color: #008cff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .produtos {
+      padding: 0 10px;
+    }
+    .grid-produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .produto {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 300px;
+    }
+    .imagem-produto {
+      width: 200px; /* Tamanho fixo da largura */
+      height: 200px; /* Tamanho fixo da altura */
+      object-fit: cover; /* Ajuste de imagem para cobrir sem distorcer */
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #1e90ff;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .cart:hover {
+      background-color: #ff6347;
+    }
+    .cart-items {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+    .cart-items.show {
+      display: block;
+    }
+    .cart-items ul {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .cart-items ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-items ul li:last-child {
+      border-bottom: none;
+    }
+    .cart-items .total {
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .cart-items .checkout {
+      padding: 10px;
+      background-color: #1e90ff;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    .cart-items .checkout:hover {
+      background-color: #ff6347;
+    }
+    .remove-item {
+      color: red;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    footer {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .social-media a {
+      text-decoration: none;
+      color: #333;
+      font-size: 24px;
+    }
+    .social-media a:hover {
+      color: #1e90ff;
+    }
+  </style>
+</head>
+<body>
 
-      input,
-      button {
-        display: block;
-        margin: 10px 0;
-        padding: 8px;
-        width: 100%;
-      }
+<div class="top-nav">
+  <a href="./personalização.html">Personalização</a>
+  <a href="./register.html">Junte-se a Nós</a>
+  <a href="./login.html">Entrar na Sua Conta</a>
+</div>
 
-      .resposta {
-        margin-top: 10px;
-        font-weight: bold;
-      }
+<div class="cart" onclick="toggleCart()">🛒 <span id="cartCount">0</span></div>
 
-      ul {
-        padding-left: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Sistema de Usuários</h1>
+<div class="cart-items" id="cartItems">
+  <ul id="cartList"></ul>
+  <div class="total" id="cartTotal">Total: R$0,00</div>
+  <a href="./pagamento.html" target="_blank" class="checkout">Finalizar Compra</a>
+</div>
 
-    <h2>Criar usuário</h2>
-    <input type="text" id="nome" placeholder="Nome" />
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="senha" placeholder="Senha" />
-    <button onclick="criarUsuario()">Cadastrar</button>
-    <div class="resposta" id="respostaCadastro"></div>
+<header class="top-banner">
+  <div class="banner-content">
+    <div class="banner-text">
+      <h1>CONFORTO E ESTILO<br>PARA O SEU DIA A DIA</h1>
+      <button class="btn-compre">COMPRE AGORA</button>
+    </div>
+  </div>
+</header>
 
-    <h2>Login</h2>
-    <input type="email" id="loginEmail" placeholder="Email" />
-    <input type="password" id="loginSenha" placeholder="Senha" />
-    <button onclick="fazerLogin()">Entrar</button>
-    <div class="resposta" id="respostaLogin"></div>
+<h1>Tá No Pé - Chinelos Personalizados</h1>
 
-    <h2>Todos os usuários</h2>
-    <button onclick="listarUsuarios()">Listar usuários</button>
-    <ul id="listaUsuarios"></ul>
+<!-- Produtos em Destaque -->
+<section class="produtos">
+    <h2>PRODUTOS EM DESTAQUE</h2>
+    <div class="grid-produtos">
+      <div class="produto">
+        <img src="https://i.ibb.co/ZR0sPZ9V/Chinelo-Havaianas-Top-Marvel-Classics-Homem-Aranha.jpg" alt="Chinelo hérois" class="imagem-produto" />
+        <h4>Chinelo Hérois</h4>
+        <p>R$49,90</p>
+        <button onclick="addToCart('Chinelo Praia', 49.90)">Adicionar ao Carrinho</button>
+      </div>
+  
+      <div class="produto">
+        <img src="https://i.ibb.co/7J2BQJ73/Chinelo-FARM-RIO.jpg" alt="Chinelo rio" class="imagem-produto" />
+        <h4>Chinelo Rio</h4>
+        <p>R$49,90</p>
+        <button onclick="addToCart('Chinelo Praia', 49.90)">Adicionar ao Carrinho</button>
+      </div>
 
-    <script>
-      function criarUsuario() {
-        const nome = document.getElementById("nome").value;
-        const email = document.getElementById("email").value;
-        const senha = document.getElementById("senha").value;
+      <div class="produto">
+        <img src="https://i.ibb.co/v6vFjBxX/Meu-fav.jpg" alt="Chinelo Heróis" class="imagem-produto" />
+        <h4>Chinelo Farm</h4>
+        <p>R$59,90</p>
+        <button onclick="addToCart('Chinelo Heróis', 59.90)">Adicionar ao Carrinho</button>
+      </div>
+      
+      <div class="produto">
+        <img src="https://i.ibb.co/CKJ1q2Yw/Chinelo-Havaianas-Top-Times-Corinthians-Adulto-Preto.jpg" alt="Chinelo time" class="imagem-produto" />
+        <h4>Chinelo Time</h4>
+        <p>R$39,90</p>
+        <button onclick="addToCart('Chinelo Floral', 39.90)">Adicionar ao Carrinho</button>
+      </div>
 
-        fetch("/usuarios/criar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome, email, senha }),
-        })
-          .then((res) => res.text())
-          .then((data) => {
-            document.getElementById("respostaCadastro").innerText = data;
-          });
-      }
+      <div class="produto">
+        <img src="https://i.ibb.co/5XKCNGPG/Havaianas-Slim.jpg" alt="Chinelo Animal Print" class="imagem-produto" />
+        <h4>Chinelo Animal</h4>
+        <p>R$44,90</p>
+        <button onclick="addToCart('Chinelo Animal Print', 44.90)">Adicionar ao Carrinho</button>
+      </div>
 
-      function fazerLogin() {
-        const email = document.getElementById("loginEmail").value;
-        const senha = document.getElementById("loginSenha").value;
+      <div class="produto">
+        <img src="https://i.ibb.co/4gpnxrRQ/Chinelo-Havaianas-Branco-Brasil-Outros-Moda-e-Acess-rios-Magazine-Luiza.jpg" alt="Chinelo Liso" class="imagem-produto" />
+        <h4>Chinelo Liso</h4>
+        <p>R$29,90</p>
+        <button onclick="addToCart('Chinelo Liso', 29.90)">Adicionar ao Carrinho</button>
+      </div>
 
-        fetch("/usuarios/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, senha }),
-        })
-          .then((res) => res.text())
-          .then((data) => {
-            document.getElementById("respostaLogin").innerText = data;
-          });
-      }
+      <div class="produto">
+        <img src="https://i.ibb.co/n8Dj7Q6z/transferir.jpg" alt="Chinelo Esportivo" class="imagem-produto" />
+        <h4>Chinelo Praiano</h4>
+        <p>R$54,90</p>
+        <button onclick="addToCart('Chinelo Esportivo', 54.90)">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+</section>
 
-      function listarUsuarios() {
-        fetch("/usuarios/todos")
-          .then((res) => res.json())
-          .then((usuarios) => {
-            const lista = document.getElementById("listaUsuarios");
-            lista.innerHTML = "";
-            usuarios.forEach((u) => {
-              const li = document.createElement("li");
-              li.textContent = `${u.nome} (${u.email})`;
-              lista.appendChild(li);
-            });
-          });
-      }
-    </script>
-  </body>
+<footer>
+  <p>Siga-nos nas redes sociais!</p>
+  <div class="social-media">
+    <a href="https://www.facebook.com" target="_blank">📘 Facebook</a>
+    <a href="https://www.instagram.com/tanope_013" target="_blank">📸 Instagram</a>
+    <a href="https://www.twitter.com" target="_blank">🐦 Twitter</a>
+    <a href="https://www.whatsapp.com" target="_blank">📱 WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  let cart = [];
+
+  window.onload = function () {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+      updateCart();
+    }
+  };
+
+  function toggleCart() {
+    const cartItems = document.getElementById("cartItems");
+    cartItems.classList.toggle("show");
+  }
+
+  function addToCart(itemName, itemPrice) {
+    cart.push({ name: itemName, price: itemPrice });
+    saveCart();
+    updateCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartList = document.getElementById("cartList");
+    const cartCount = document.getElementById("cartCount");
+    cartList.innerHTML = '';
+    cart.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `${item.name} - R$${item.price.toFixed(2)} <span class="remove-item" onclick="removeFromCart(${index})">Remover</span>`;
+      cartList.appendChild(li);
+    });
+
+    const cartTotal = document.getElementById("cartTotal");
+    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+    cartTotal.textContent = `Total: R$${totalPrice.toFixed(2)}`;
+
+    cartCount.textContent = cart.length;
+  }
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function checkout() {
+    if (cart.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+    }
+    alert("Compra finalizada com sucesso!");
+    cart = [];
+    saveCart();
+    updateCart();
+  }
+</script>
+
+</body>
 </html>
